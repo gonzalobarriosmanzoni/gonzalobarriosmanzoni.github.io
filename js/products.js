@@ -1,25 +1,40 @@
 const CAR_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
+
+
 let carArray = [];
-console.log()
+
 
 fetch(CAR_URL)
 .then(function(respuesta) {
-    console.log()
+    console.log(carArray)
     return respuesta.json()
 })
 .then(function(datos) {
-    carArray = datos.results;
-    let divCarList = document.getElementById('cars-list');
-
+    carArray = datos.products;
+    let divListaAutos = document.getElementById('cars-list');
     let htmlContentToAppend = '';
-    for (let car of carArray) {
-        console.log(car)
+    for(let products of carArray) {
+        console.log(products);
         htmlContentToAppend += `
-            <input type="radio" name="name" value="${car.name}">
-            <p>${car.name}</p>
-        `;
-    }
-    divCarList.innerHTML += htmlContentToAppend;
+        <div class="row">
+                <div class="col-3">
+                    <img src="` + products.image + `" alt="product image" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <div class="mb-1">
+                        <h4>`+ products.name +`  `+ products.currency + ` `+ products.cost + ` </h4> 
+                        <p> `+ products.description +`</p> 
+                        </div>
+                        <small class="text-muted"> `+ products.soldCount + ` vendidos </small> 
+                    </div>
 
-});
+                </div>
+            </div>
+        </div>
+        `
+        document.getElementById("cars-list").innerHTML = htmlContentToAppend; 
+    }
+
+}) 
