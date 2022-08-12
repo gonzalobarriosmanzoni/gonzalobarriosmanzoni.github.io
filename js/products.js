@@ -22,4 +22,4 @@ fetch(CAR_URL)
     }
     divCarList.innerHTML += htmlContentToAppend;
 
-    
+});
