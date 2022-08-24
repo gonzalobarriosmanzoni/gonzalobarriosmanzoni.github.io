@@ -12,7 +12,6 @@ fetch(CAR_URL)
 })
 .then(function(datos) {
     carArray = datos.products;
-    let divListaAutos = document.getElementById('cars-list');
     let htmlContentToAppend = '';
     for(let products of carArray) {
         console.log(products);
