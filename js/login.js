@@ -18,7 +18,7 @@ document.getElementById('form-login').addEventListener('submit', function(evento
     function login1(){
         var inputEmail= document.getElementById("email1");
         localStorage.setItem("email", inputEmail.value);
-       }
+        console.log(localStorage.getItem("email"));
+    }
        
-       console.log(localStorage.getItem('email'));
-         
+      
