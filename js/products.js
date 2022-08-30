@@ -1,9 +1,8 @@
-const CAR_URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
-
+const car_id = localStorage.getItem("catID");
+const CAR_URL = 'https://japceibal.github.io/emercado-api/cats_products/'+ car_id +'.json'; 
 
 
 let carArray = [];
-
 
 fetch(CAR_URL)
 .then(function(respuesta) {
@@ -11,7 +10,7 @@ fetch(CAR_URL)
     return respuesta.json()
 })
 .then(function(datos) {
-    carArray = datos.products;
+    carArray =  datos.products;
     let htmlContentToAppend = '';
     for(let products of carArray) {
         console.log(products);
@@ -35,5 +34,12 @@ fetch(CAR_URL)
         `
         document.getElementById("cars-list").innerHTML = htmlContentToAppend; 
     }
+});
 
-}) 
+
+let Category = localStorage.getItem('Nombre');  
+
+let CategoryToAppend = '';
+CategoryToAppend +=`  <h5> Verás Aquí todos los productos de la <b> `+ Category +` </b> </h5> `
+
+document.getElementById("nombre-categoria").innerHTML =  CategoryToAppend; 
